@@ -25,8 +25,8 @@ struct ThreadArgs {
 };
 
 struct ThreadInfo {
-	HANDLE hThread;
-	DWORD threadId;
+    HANDLE hThread;
+    DWORD threadId;
     BOOL* threadStopper;
     ThreadArgs threadArgs;
 
