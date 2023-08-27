@@ -11,7 +11,7 @@ HALF_LIFE_2::HALF_LIFE_2(HANDLE hProcess, DWORD dwThreadId) {
     this->buffer = 0;
 
     this->healthOffsets = { 0x4B9DF8, 0x64, 0x54, 0x18, 0x1C, 0x44, 0x13C, 0xE0 };
-    this->ammoOffsets = { 0x6380E4, 0x14, 0x50, 0x8, 0x20, 0x18, 0x34, 0x4AC };
+    this->ammoOffsets = { 0x638104, 0x14C, 0x50, 0x8, 0x20, 0x4AC };
 
     std::cout << "Half Life 2 Trainer enabled" << std::endl;
     std::cout << "F2 for infinite health" << std::endl;
@@ -33,7 +33,7 @@ void HALF_LIFE_2::Run() {
             std::cout << "[INFO] pointerChainStartAddress: 0x" << std::hex << pointerChainStartAddress << std::endl;
             uintptr_t address = FindDMAAAddress(hProcess, pointerChainStartAddress, this->healthOffsets, &buffer);
             
-            const int health = 100;
+            const int health = 1000;
             ThreadArgs threadArgs(this->hProcess, reinterpret_cast<LPVOID>(address), health);
             ThreadInfo threadInfo(NULL, NULL, &healthStopThread, threadArgs);
             LPVOID threadArgsPtr = &threadInfo;
@@ -61,7 +61,7 @@ void HALF_LIFE_2::Run() {
             std::cout << "[INFO] pointerChainStartAddress: 0x" << std::hex << pointerChainStartAddress << std::endl;
             uintptr_t address = FindDMAAAddress(hProcess, pointerChainStartAddress, this->ammoOffsets, &buffer);
 
-            const int ammo = 100;
+            const int ammo = 1000;
             ThreadArgs threadArgs(this->hProcess, reinterpret_cast<LPVOID>(address), ammo);
             ThreadInfo threadInfo(NULL, NULL, &ammoStopThread, threadArgs);
             LPVOID threadArgsPtr = &threadInfo;
